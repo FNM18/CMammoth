@@ -1,0 +1,10 @@
+Program Team_pp : 
+
+
+variables
+    input:int;
+
+main(){
+    input = 5;
+    write(input - -5 + 10);
+}

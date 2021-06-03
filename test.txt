@@ -1,0 +1,243 @@
+Program Team_pp : 
+
+Class FloatList{
+    attributes
+        list[100] : float;
+    methods
+
+    float function get(n:int){
+        return list[n];
+    };
+
+    void function insert(value:float ,n:int){
+        list[n] = value;
+    };
+
+    void function print()
+    variables i : int;
+    {
+        for i = 0 in 99 do {
+            write(i,".-",list[i]);
+        }
+    };
+
+    void function sortAsc()
+    variables
+    i, j : int;
+    temp : float;
+    {
+        for i = 0 in 99 do {
+            for j = 0 in 98-i do {
+                if(list[j] > list[j+1]) then
+                {
+                    temp = list[j];
+                    list[j] = list[j + 1];
+                    list[j + 1] = temp;
+                }
+            }
+        }
+    };
+
+    void function sortDesc()
+    variables
+    i, j : int;
+    temp : float;
+    {
+        for i = 0 in 99 do {
+            for j = 0 in 98-i do {
+                if(list[j] < list[j+1]) then
+                {
+                    temp = list[j];
+                    list[j] = list[j + 1];
+                    list[j + 1] = temp;
+                }
+            }
+        }
+    };
+    
+};
+
+Class Matrix{
+    attributes
+        mat[4,4] : int;
+    methods
+
+    int function getMatrixValue(row:int, col:int){
+        return mat[row,col];
+    };
+
+    void function setMatrix(row:int,col:int,value:int){
+        //write("set:",value,"row:",row,"col",col);
+        mat[row,col] = value;
+        //write("set2: ",mat[row,col]);
+    };
+
+    void function printMatrix()
+    variables row:int;
+    {
+        for row = 0 in 3 do {
+            write(mat[row,0],mat[row,1],mat[row,2],mat[row,3]);
+        }
+    };
+};
+
+variables
+    input:int;
+    matrix1:Matrix;
+    matrix2:Matrix;
+    matrix3:Matrix;
+    array[4]:float;
+    mtr[5,5]:int;
+    lista: FloatList;
+
+//Factorial recursivo
+int function factorialRec(n:int)
+{
+    if(n == 0) then {
+        return 1;
+    }
+    return n * factorialRec(n - 1);
+};
+
+//Factorial iterativo
+int function factorialIt(n:int)
+variables
+    i,res:int;
+{
+    res = 1;
+    for i = 2 in n do {
+        res = res * i;
+    }
+
+    return res;
+};
+
+
+//Fibonacci recursivo
+int function fibRec (n:int) 
+{
+   if(n <= 1) then {
+        return n;
+    }
+    return fibRec(n-1) + fibRec(n-2);
+};
+
+
+//Fibonacci iterativo
+int function fibIt (n:int)
+variables
+    next, actual, temporal : int;
+    i : int;
+{
+    next = 1;
+    actual = 0;
+    temporal = 0;
+
+    for i = 1 in n do {
+        temporal = actual;
+        actual = next;
+        next = next + temporal;
+    }
+
+    return actual;
+};
+
+//Multiplicacion de matrices
+void function matrixMult()
+variables
+    i, j, k : int;
+{
+    for i = 0 in 3 do{
+        for j = 0 in 3 do{
+            matrix1.setMatrix(i,j,i+1+j);
+            matrix2.setMatrix(i,j,i+1+j);
+        }   
+    }
+    matrix1.printMatrix();
+    write("");
+    matrix2.printMatrix();
+
+    for i = 0 in 3 do{
+        for j = 0 in 3 do{
+            matrix3.setMatrix(i,j,0);
+            for k = 0 in 3 do{
+                    matrix3.setMatrix(i,j,matrix3.getMatrixValue(i,j) + matrix1.getMatrixValue(i,k) * matrix2.getMatrixValue(k,j));
+            } 
+        }   
+    }
+    write("");
+    matrix3.printMatrix();
+};
+
+//Multiplicacion de matrices
+void function matrixMultIndex()
+variables
+    i, j, k : int;
+{
+    for i = 0 in 3 do{
+        for j = 0 in 3 do{
+            matrix1.mat[i,j] = i+1+j;
+            matrix2.mat[i,j] = i+1+j;
+        }   
+    }
+    matrix1.printMatrix();
+    write("");
+    matrix2.printMatrix();
+
+    for i = 0 in 3 do{
+        for j = 0 in 3 do{
+            matrix3.mat[i,j] = 0;
+            for k = 0 in 3 do{
+                    matrix3.mat[i,j] = matrix3.mat[i,j] + matrix1.mat[i,k] * matrix2.mat[k,j];
+            } 
+        }   
+    }
+    write("");
+    matrix3.printMatrix();
+};
+
+void function listExample()
+variables i : int;{
+    for i = 1 in 100 do{
+        lista.insert(i%10 + i/10.0,i-1);
+    }
+    write("Lista desordenada");
+    lista.print();
+    lista.sortAsc();
+    write("Lista ordenada ascendente");
+    lista.print();
+    lista.sortDesc();
+    write("Lista ordenada descendente");
+    lista.print();
+    write("Buscar valor en indice 17:",lista.get(17));
+};
+
+main(){
+    write("Bienvenido, Inserte un número");
+    input = 5;
+    write("El numero",input);
+    array[2] = 59.6969;
+    write("Array value",array[1+1]); 
+    read(input);
+    //Factorial recursivo
+    write("Factorial recursivo:" , factorialRec(input));
+
+    //Factorial iterativo
+    write("Factorial iterativo:", factorialIt(input));
+
+    //Fibonacci recursivo
+    write("Fibonacci recursivo:", fibRec(input));
+
+    //Fibonacci iterativo
+    write("Fibonacci iterativo:", fibIt(input));
+    
+    write("Multiplicacion de matrices");
+    matrixMultIndex();
+
+    write("Sort y Find de Lista de 100 numeros");
+    listExample();
+
+    lista.list[10] = 15;
+    write("La lista 10", lista.list[10]);
+    write("Goodbye"); 
+}

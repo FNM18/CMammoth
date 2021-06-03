@@ -1,0 +1,31 @@
+STATEMENTS
+
+goto    -> 200
+gotoF   -> 201
+era     -> 202
+param   -> 203
+gosub   -> 204
+ver     -> 205
+setCl   -> 206
+unsetCl -> 207
+return  -> 298
+endfunc -> 299
+end     -> 999
+
+assign  -> 5
+write   -> 102
+read    -> 103
+
+Sum     -> 0
+Sub     -> 1
+Mul     -> 2
+Div     -> 3
+Mod     -> 4
+Eq      -> 6
+Ne      -> 7
+Gt      -> 8
+Lt      -> 9
+Ge      -> 10
+Le      -> 11
+And     -> 12
+Or      -> 13
