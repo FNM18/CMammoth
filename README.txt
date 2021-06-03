@@ -1,3 +1,10 @@
+COMANDO PARA CONSTRUIR COMPILADOR (LINUX)
+./construct.sh
+
+EJECUTAR NUEVAMENTE DESPUES DE CONSTRUIR
+./CMammoth
+
+
 ******************************************
     Estructuras Sintácticas del Lenguaje
 ******************************************
